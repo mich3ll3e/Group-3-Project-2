@@ -17,10 +17,10 @@ const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-//should be moved to the routes folder later
-app.get("/",(req,res)=>{
-    res.render("index");
-});
+const indexRoutes = require("./controllers/index-contoller");
+
+app.use(indexRoutes);
+
 
 db.sequelize.sync().then(()=>{
     app.listen(PORT, ()=>{
