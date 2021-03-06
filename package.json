@@ -23,9 +23,11 @@
   "homepage": "https://github.com/mich3ll3e/Project-2#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "bluebird": "^3.7.2",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.1",
     "moment": "^2.29.1",
+    "mongoose": "^5.11.19",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.0",
     "socket.io": "^3.1.2"
