@@ -1,0 +1,28 @@
+    <div class="jumbotron text-center">
+        <h1>REAL TIME CHAT APP</h1>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3"> 
+                <h3>Users ...</h3></div>
+            <div class="col-md-9">
+                <div class="chat-message"></div>
+
+        <div id="chat-form-contianer">
+            <form id="chat-form" class="form-group">
+                <div class="input-group">
+                    <input type="text" id="msg" class="form-control" placeholder="Enter message" required
+                        autocomplete="off">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="send">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/main.js"></script>

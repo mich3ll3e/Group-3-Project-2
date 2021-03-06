@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "newPass",
-    "database": "project2",
+    "database": "chatApp",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
