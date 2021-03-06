@@ -1,19 +1,17 @@
 {
-  "name": "chat-app",
+  "name": "Project",
   "version": "1.0.0",
-  "description": "chat app",
+  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mich3ll3e/Project-2.git"
   },
-  "keywords": [
-    "chat",
-    "app"
-  ],
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -21,6 +19,9 @@
   },
   "homepage": "https://github.com/mich3ll3e/Project-2#readme",
   "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.1",
+    "mysql2": "^2.2.5",
     "sequelize": "^6.5.0"
   }
 }
