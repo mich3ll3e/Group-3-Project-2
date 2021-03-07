@@ -3,7 +3,13 @@ const chatFrom = document.getElementById("chat-form");
 const chatMessages = document.querySelector(".chat-message");
 const socket = io();
 
-const  userName = "user"+ Math.floor(Math.random()*1000);
+let  userName ;
+
+$.get("/api/user_data").then(function(data) {
+    
+   userName = data.username
+   console.log()
+  });
 
 
 //Message from Server
@@ -33,8 +39,8 @@ chatFrom.addEventListener('submit', event =>{
 //output message to DOM
 function outputMessage(message){
     const div = document.createElement("div");
-    div.classList.add("message");
+    div.classList.add("message","p-3");
     div.innerHTML = `<p>${message.username} <span>${message.time}</span></p>
-    <p>${message.text}</p>`;
+    <p>${message.text}</p><hr>`;
     chatMessages.appendChild(div);
 }

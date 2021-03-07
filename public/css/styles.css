@@ -1,0 +1,14 @@
+
+.chat-message{
+    height: 80%;
+    overflow-y: scroll;
+    border: 1px lightgray solid
+}
+.userDisplay{
+    border: 1px black solid;
+    padding-left: 10px; 
+    background-color: rgb(238, 238, 238)
+}  
+.userText{
+    margin: 5px;
+}
