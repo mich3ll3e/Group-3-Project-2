@@ -1,46 +1,60 @@
-
-const chatFrom = document.getElementById("chat-form");
-const chatMessages = document.querySelector(".chat-message");
+$(document).ready(function(){
+    
+const chatMessages = $("#chat-message");
 const socket = io();
 
-let  userName ;
+let  user ;
 
-$.get("/api/user_data").then(function(data) {
-    
-   userName = data.username
-   console.log()
+$.get("/api/user_data").then(function(data) { 
+   user = data
   });
 
 
 //Message from Server
 socket.on("message", message =>{
-    console.log(message);
     outputMessage(message);
 
     //scroll down
     chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
-chatFrom.addEventListener('submit', event =>{
+$("#chat-form").on('submit', event =>{
     event.preventDefault();
+    
     //get message text
     const msg = {}
-    msg.text = event.target.msg.value;
-    msg.userName = userName;
+    msg.text = $("#msg").val();
+    msg.userName = user.username;
+    msg.id = user.id;
+    
+    
     
     //emiting message to the server
     socket.emit("chatMessage",msg);
+    $.ajax("/api/messages", {
+        type: "POST",
+        data: msg
+      }).then(function() {
+        //   location.replace("/chat");
+          // If there's an error, handle it by throwing up a bootstrap alert
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
     //clear Input 
-    event.target.elements.msg.value = "";
-    event.target.elements.msg.focus();
+    $("#msg").val("");
+    $("#msg").focus();
+
+    
 
 });
 
 //output message to DOM
-function outputMessage(message){
-    const div = document.createElement("div");
-    div.classList.add("message","p-3");
-    div.innerHTML = `<p>${message.username} <span>${message.time}</span></p>
-    <p>${message.text}</p><hr>`;
-    chatMessages.appendChild(div);
-}
+    function outputMessage(message){
+        const div = document.createElement("div");
+        div.classList.add("message","p-3");
+        div.innerHTML = `<p>${message.username} <span>${message.time}</span></p>
+        <p>${message.text}</p><hr>`;
+        chatMessages.append(div);
+    }
+});
