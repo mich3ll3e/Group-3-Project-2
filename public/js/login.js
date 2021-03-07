@@ -2,11 +2,11 @@ $(document).ready(function(){
     $("#login-form").on("submit",function(e){
         e.preventDefault();
         const user = {
-            username:$("#username").val().trim(),
+            email:$("#email").val().trim(),
             password:$("#password").val().trim()
         }
         loginUser(user);
-        $("#username").val("");
+        $("#email").val("");
         $("#password").val("")
     });
 

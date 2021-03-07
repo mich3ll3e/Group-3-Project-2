@@ -3,10 +3,12 @@ $(document).ready(function(){
         e.preventDefault();
         const newUser = {
             username:$("#username").val().trim(),
+            email:$("#email").val().trim(),
             password:$("#password").val().trim()
         }
         signUpUser(newUser);
         $("#username").val("");
+        $("#email").val("")
         $("#password").val("")
     });
 
