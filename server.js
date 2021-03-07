@@ -66,6 +66,7 @@ app.post("/api/signup",(req,res)=>{
     console.log(req.body);
     db.User.create({
         username:req.body.username,
+        email:req.body.email,
         password:req.body.password
     })
     .then(function() {
