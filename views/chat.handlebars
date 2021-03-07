@@ -11,7 +11,24 @@
                 {{/each}}
             </div>
             <div class="col-md-9"> 
-                <div id="chat-message"></div>
+                <div id="chat-message">
+                    {{#each messages}}
+                    <div class="card">
+                        
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4>{{dataValues.User.dataValues.username}} </h4>
+                            </div>
+                            
+                            <p>{{dataValues.body}}   <span style="font-size:10px">{{dataValues.createdAt}}</span></p>
+                            
+                            
+                        </div>
+                        
+                    </div>
+                        
+                    {{/each}}
+                </div>
 
                 <div id="chat-form-contianer">
                     <form id="chat-form" class="form-group">

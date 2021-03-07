@@ -52,9 +52,9 @@ $("#chat-form").on('submit', event =>{
 //output message to DOM
     function outputMessage(message){
         const div = document.createElement("div");
-        div.classList.add("message","p-3");
-        div.innerHTML = `<p>${message.username} <span>${message.time}</span></p>
-        <p>${message.text}</p><hr>`;
+        div.classList.add("message","p-3", "card");
+        div.innerHTML = `<h4>${message.username} </h4>
+        <p>${message.text}  <span style="font-size:10px">${message.time}</span></p>`;
         chatMessages.append(div);
     }
 });

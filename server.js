@@ -2,6 +2,7 @@ const express = require('express');
 const session = require("express-session");
 const http = require("http");
 const socketio = require("socket.io");
+const moment = require("moment");
 const formatMessage = require("./utils/messages");
 const passport = require("./config/passport");
 const isAuthenticated = require("./config/middleware/isAuthenticated");
@@ -50,8 +51,12 @@ app.get("/signup",(req,res)=>{
 });
 app.get("/chat", isAuthenticated,(req,res)=>{
     db.User.findAll({raw: true}).then(dbUsers=>{
-        res.render("chat",{users:dbUsers});
-    })
+        db.Message.findAll({include:db.User}).then(dbMessages=>{
+            console.log(dbMessages);
+            res.render("chat",{users:dbUsers,messages:dbMessages});
+        });
+        
+    });
     
 });
 app.get("/",(req,res)=>{
@@ -86,7 +91,8 @@ app.post("/api/messages",(req,res)=>{
     console.log(req.body);
     db.Message.create({
         body:req.body.text,
-        UserId:req.body.id
+        UserId:req.body.id,
+        
     }).then(()=> {
         res.redirect("/chat");
       })
