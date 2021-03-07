@@ -31,7 +31,7 @@ io.on("connection", socket=>{
     socket.emit("message",formatMessage(botName, "welcome to chat"));
 
     //Bordcast when a user connects
-    socket.broadcast.emit("message", formatMessage(botName,`${username}has joined the chat` ));
+    socket.broadcast.emit("message", formatMessage(botName,`${username} has joined the chat` ));
 
     //when client disconnects
     socket.on("disconnect",()=>{
@@ -69,18 +69,31 @@ app.post("/api/signup",(req,res)=>{
         email:req.body.email,
         password:req.body.password
     })
-    .then(function() {
+    .then(()=>{
         res.redirect("/login");
       })
-      .catch(function(err) {
+      .catch((err)=>{
         res.status(401).json(err);
       });
 });
 
 app.post("/api/login", passport.authenticate("local"),(req,res)=>{
-    console.log(req.user);
+    username = req.user.username;
     res.json(req.user);
 });
+
+app.post("/api/messages",(req,res)=>{
+    console.log(req.body);
+    db.Message.create({
+        body:req.body.text,
+        UserId:req.body.id
+    }).then(()=> {
+        res.redirect("/chat");
+      })
+      .catch((err)=> {
+        res.status(401).json(err);
+      });
+})
 
 app.get("/api/user_data", function(req, res) {
     if (!req.user) {
@@ -89,7 +102,7 @@ app.get("/api/user_data", function(req, res) {
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
-      username = req.user.username;
+      
       res.json({
         username: req.user.username,
         id: req.user.id
