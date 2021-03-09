@@ -3,7 +3,12 @@ form.login {
   margin-top: 50px;
 }
 
-#centered{
-text-align: center;
-color:blue;
+.centered{
+  text-align: center;
+  color: blueviolet;
+}
+
+#footer{
+  text-align: center;
+  color: blueviolet;
 }
