@@ -1,6 +1,6 @@
 /* eslint-disable prefer-arrow-callback */
 $(document).ready(function() {
-  const chatMessages = $("#chat-message");
+  const chatMessages = $("#chat-messages");
   const socket = io();
 
   let user;
@@ -26,21 +26,14 @@ $(document).ready(function() {
     const msg = {};
     msg.text = $("#msg").val();
     msg.userName = user.username;
-
+    msg.UserId = user.id;
     msg.time = newMoment.format("hh:mm");
 
-    const div = document.createElement("div");
-    div.classList.add(
-      "message",
-      "p-3",
-      "card",
-      "text-right",
-      "message",
-      "my-message"
-    );
-    div.innerHTML = `<h6>You </h6>
-        <p class="lead m-0">${msg.text}  <span class="message-text">${msg.time}</span></p>`;
-    chatMessages.append(div);
+    const div = $("<div>");
+    div.addClass("message p-3 card text-right message my-message");
+    div.html(`<h6>You </h6>
+    <p class="lead m-0">${msg.text}  <span class="message-text">${msg.time}</span></p>`);
+    $("#chat-messages").append(div);
 
     //emiting message to the server
     socket.emit("chatMessage", msg);
@@ -63,10 +56,10 @@ $(document).ready(function() {
 
 //output message to DOM
 function outputMessage(message) {
-  const div = document.createElement("div");
-  div.classList.add("message", "p-3", "card", "mb-3", "message");
-  div.innerHTML = `<h4>${message.username} </h4>
-
-        <p>${message.text}  <span style="font-size:10px">${message.time}</span></p>`;
-  chatMessages.append(div);
+  console.log(message);
+  const div = $("<div>");
+  div.addClass("message p-3 card mb-3 message");
+  div.html(`<h6>${message.username} </h6>
+    <p class="lead m-0">${message.text}  <span class="message-text">${message.time}</span></p>`);
+  $("#chat-messages").append(div);
 }

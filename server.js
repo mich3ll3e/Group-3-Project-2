@@ -49,74 +49,74 @@ io.on("connection", socket => {
   socket.on("chatMessage", msg => {
     socket.broadcast.emit("message", formatMessage(msg.userName, msg.text));
   });
+});
 
-  app.get("/signup", (req, res) => {
-    res.render("signup");
-  });
+app.get("/signup", (req, res) => {
+  res.render("signup");
+});
 
-  app.get("/chat", isAuthenticated, (req, res) => {
-    db.User.findAll({ raw: true }).then(dbUsers => {
-      db.Message.findAll({ include: db.User }).then(dbMessages => {
-        res.render("chat", { users: dbUsers, messages: dbMessages });
-      });
+app.get("/chat", isAuthenticated, (req, res) => {
+  db.User.findAll({ raw: true }).then(dbUsers => {
+    db.Message.findAll({ include: db.User }).then(dbMessages => {
+      res.render("chat", { users: dbUsers, messages: dbMessages });
     });
   });
-  app.get("/", (req, res) => {
-    res.render("index");
-  });
+});
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
-  app.get("/login", (req, res) => {
-    res.render("login");
-  });
+app.get("/login", (req, res) => {
+  res.render("login");
+});
 
-  app.post("/api/signup", (req, res) => {
-    console.log(req.body);
-    db.User.create({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password
+app.post("/api/signup", (req, res) => {
+  console.log(req.body);
+  db.User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password
+  })
+    .then(() => {
+      res.redirect("/login");
     })
-      .then(() => {
-        res.redirect("/login");
-      })
-      .catch(err => {
-        res.status(401).json(err);
-      });
-  });
+    .catch(err => {
+      res.status(401).json(err);
+    });
+});
 
-  app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    username = req.user.username;
-    res.json(req.user);
-  });
+app.post("/api/login", passport.authenticate("local"), (req, res) => {
+  username = req.user.username;
+  res.json(req.user);
+});
 
-  app.post("/api/messages", (req, res) => {
-    console.log(req.body);
-    db.Message.create({
-      body: req.body.text,
-      UserId: req.body.id
+app.post("/api/messages", (req, res) => {
+  console.log(req.body);
+  db.Message.create({
+    body: req.body.text,
+    UserId: req.body.UserId
+  })
+    .then(() => {
+      res.redirect("/chat");
     })
-      .then(() => {
-        res.redirect("/chat");
-      })
-      .catch(err => {
-        res.status(401).json(err);
-      });
-  });
+    .catch(err => {
+      res.status(401).json(err);
+    });
+});
 
-  app.get("/api/user_data", (req, res) => {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
+app.get("/api/user_data", (req, res) => {
+  if (!req.user) {
+    // The user is not logged in, send back an empty object
+    res.json({});
+  } else {
+    // Otherwise send back the user's email and id
+    // Sending back a password, even a hashed password, isn't a good idea
 
-      res.json({
-        username: req.user.username,
-        id: req.user.id
-      });
-    }
-  });
+    res.json({
+      username: req.user.username,
+      id: req.user.id
+    });
+  }
 });
 
 const PORT = process.env.PORT || 8080;
