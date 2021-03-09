@@ -14,10 +14,7 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "newPass",
-    "database": "chatApp",
-    "host": "127.0.0.1",
+    "user_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   }
 }
