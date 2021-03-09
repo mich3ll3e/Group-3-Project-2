@@ -40,27 +40,29 @@ io.on("connection", socket => {
     formatMessage(botName, `${username} has joined the chat`)
   );
 
-  //when client disconnects
-  socket.on("disconnect", () => {
-    io.emit("message", formatMessage(botName, `${username} has left the chat`));
-  });
 
-  //Listen for chat Message
-  socket.on("chatMessage", msg => {
-    io.emit("message", formatMessage(msg.userName, msg.text));
-  });
-});
+    //when client disconnects
+    socket.on("disconnect",()=>{
+        io.emit("message", formatMessage(botName, `${username} has left the chat`));
+    });
+
+    //Listen for chat Message
+    socket.on("chatMessage",(msg)=>{
+        socket.broadcast.emit("message",formatMessage(msg.userName, msg.text));
+    });
+
 
 app.get("/signup", (req, res) => {
   res.render("signup");
 });
-app.get("/chat", isAuthenticated, (req, res) => {
-  db.User.findAll({ raw: true }).then(dbUsers => {
-    db.Message.findAll({ include: db.User }).then(dbMessages => {
-      console.log(dbMessages);
-      res.render("chat", { users: dbUsers, messages: dbMessages });
+
+app.get("/chat", isAuthenticated,(req,res)=>{
+    db.User.findAll({raw: true}).then(dbUsers=>{
+        db.Message.findAll({include:db.User}).then(dbMessages=>{
+            res.render("chat",{users:dbUsers,messages:dbMessages});
+        });
     });
-  });
+
 });
 app.get("/", (req, res) => {
   res.render("index");
