@@ -41,7 +41,7 @@ io.on("connection", socket=>{
 
     //Listen for chat Message
     socket.on("chatMessage",(msg)=>{
-        io.emit("message",formatMessage(msg.userName, msg.text));
+        socket.broadcast.emit("message",formatMessage(msg.userName, msg.text));
     });
 
 });
@@ -52,12 +52,9 @@ app.get("/signup",(req,res)=>{
 app.get("/chat", isAuthenticated,(req,res)=>{
     db.User.findAll({raw: true}).then(dbUsers=>{
         db.Message.findAll({include:db.User}).then(dbMessages=>{
-            console.log(dbMessages);
             res.render("chat",{users:dbUsers,messages:dbMessages});
         });
-        
     });
-    
 });
 app.get("/",(req,res)=>{
     res.render("index")
