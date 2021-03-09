@@ -94,7 +94,7 @@ app.post("/api/messages", (req, res) => {
   console.log(req.body);
   db.Message.create({
     body: req.body.text,
-    UserId: req.body.id
+    UserId: req.body.UserId
   })
     .then(() => {
       res.redirect("/chat");
