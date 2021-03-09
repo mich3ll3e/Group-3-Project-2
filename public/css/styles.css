@@ -7,3 +7,21 @@ form.login {
 text-align: center;
 color:blue;
 }
+
+.message-bubble{
+  max-width: 200px;
+}
+
+.my-message{
+  background-color: rgb(171, 205, 236);
+  margin-left: auto;
+}
+.message{
+  max-width: 200px;
+  min-height: 50px;
+  
+  margin-bottom: 20px;
+}
+.message-text{
+  font-size: 10px;
+}

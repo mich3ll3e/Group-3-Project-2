@@ -20,11 +20,21 @@ $(document).ready(function() {
   $("#chat-form").on("submit", event => {
     event.preventDefault();
 
+    const newMoment = moment();
+
     //get message text
     const msg = {};
     msg.text = $("#msg").val();
     msg.userName = user.username;
-    msg.id = user.id;
+
+    msg.time = newMoment.format("hh:mm")
+    
+    const div = document.createElement("div");
+        div.classList.add("message","p-3", "card","text-right", "message","my-message");
+        div.innerHTML = `<h6>You </h6>
+        <p class="lead m-0">${msg.text}  <span class="message-text">${msg.time}</span></p>`;
+        chatMessages.append(div);
+    
 
     //emiting message to the server
     socket.emit("chatMessage", msg);
@@ -44,11 +54,17 @@ $(document).ready(function() {
     $("#msg").focus();
   });
 
-  //output message to DOM
-  function outputMessage(message) {
-    const div = document.createElement("div");
-    div.classList.add("message", "p-3", "card");
-    div.innerHTML = `<h4>${message.username} </h4>
+
+    
+
+});
+
+//output message to DOM
+    function outputMessage(message){
+        const div = document.createElement("div");
+        div.classList.add("message","p-3", "card" ,"mb-3", "message");
+        div.innerHTML = `<h4>${message.username} </h4>
+
         <p>${message.text}  <span style="font-size:10px">${message.time}</span></p>`;
     chatMessages.append(div);
   }
