@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "newPass",
+    "password": null,
     "database": "chatApp",
     "host": "127.0.0.1",
     "dialect": "mysql"
