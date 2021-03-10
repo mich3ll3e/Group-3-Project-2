@@ -10,7 +10,6 @@
     "fix": "eslint --fix .",
     "watch": "nodemon server.js"
   },
-
   "keywords": [],
   "author": "",
   "license": "ISC",
