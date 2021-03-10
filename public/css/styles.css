@@ -3,6 +3,16 @@ form.login {
   margin-top: 50px;
 }
 
+
+.centered{
+  text-align: center;
+  color: blueviolet;
+}
+
+#footer{
+  text-align: center;
+  color: blueviolet;
+}
 #centered{
 text-align: center;
 color:blue;
@@ -24,4 +34,5 @@ color:blue;
 }
 .message-text{
   font-size: 10px;
+
 }
