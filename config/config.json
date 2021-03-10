@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "newPass",
+    "password": "password",
     "database": "chatApp",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "newPass",
+    "password": "password",
     "database": "chatApp",
     "host": "127.0.0.1",
     "dialect": "mysql"
