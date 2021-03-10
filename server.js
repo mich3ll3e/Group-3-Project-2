@@ -47,17 +47,17 @@ io.on("connection", socket => {
 
   //Listen for chat Message
   socket.on("chatMessage", msg => {
-    io.emit("message", formatMessage(msg.userName, msg.text));
+    socket.broadcast.emit("message", formatMessage(msg.userName, msg.text));
   });
 });
 
 app.get("/signup", (req, res) => {
   res.render("signup");
 });
+
 app.get("/chat", isAuthenticated, (req, res) => {
   db.User.findAll({ raw: true }).then(dbUsers => {
     db.Message.findAll({ include: db.User }).then(dbMessages => {
-      console.log(dbMessages);
       res.render("chat", { users: dbUsers, messages: dbMessages });
     });
   });
@@ -94,7 +94,7 @@ app.post("/api/messages", (req, res) => {
   console.log(req.body);
   db.Message.create({
     body: req.body.text,
-    UserId: req.body.id
+    UserId: req.body.UserId
   })
     .then(() => {
       res.redirect("/chat");
