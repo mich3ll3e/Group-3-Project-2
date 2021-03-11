@@ -1,3 +1,23 @@
+html, body{
+  height: 100%;
+}
+.slantedDiv{
+  position: relative;
+  z-index: -1;
+  height: 400px;
+  background-image: url("https://images.ctfassets.net/3prze68gbwl1/asset-17suaysk1qa1jgn/ce11bb9326335ed093b680aac0f97686/android-chat-app-tutorial.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: skewY(-11deg);
+  
+}
+
+.slantedDiv .content{
+  margin-left: 5rem;
+  padding-top: 7rem;
+  transform: skewY(11deg);
+}
+
 form.signup,
 form.login {
   margin-top: 50px;
