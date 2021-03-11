@@ -7,14 +7,16 @@ $(document).ready(function() {
 
   $.get("/api/user_data").then(function(data) {
     user = data;
+    console.log(user);
   });
+
 
   //Message from Server
   socket.on("message", message => {
     outputMessage(message);
 
     //scroll down
-    console.log(chatMessages.scrollTop);
+
     chatMessages.scrollTop = chatMessages.scrollHeight;
   });
 
@@ -29,7 +31,7 @@ $(document).ready(function() {
     msg.userName = user.username;
     msg.UserId = user.id;
     msg.time = newMoment.format("hh:mm");
-
+    console.log(msg);
     const div = $("<div>");
     div.addClass("message p-3 card text-right message my-message");
     div.html(`<h6>You </h6>
@@ -58,7 +60,6 @@ $(document).ready(function() {
 
 //output message to DOM
 function outputMessage(message) {
-  console.log(message);
   const div = $("<div>");
   div.addClass("message p-3 card mb-3 message");
   div.html(`<h6>${message.username} </h6>

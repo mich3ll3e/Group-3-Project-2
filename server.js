@@ -32,7 +32,7 @@ let username = "username";
 
 io.on("connection", socket => {
   //welcome current user
-  socket.emit("message", formatMessage(botName, "welcome to chat"));
+  socket.emit("message", formatMessage(botName, `welcome to chat ${username}`));
 
   //Bordcast when a user connects
   socket.broadcast.emit(
