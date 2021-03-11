@@ -1,6 +1,6 @@
 /* eslint-disable prefer-arrow-callback */
 $(document).ready(function() {
-  const chatMessages = document.getElementById("chat-messages");
+  const tabContent = document.getElementById("tab-content");
   const socket = io();
 
   let user;
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     //scroll down
 
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    tabContent.scrollTop = tabContent.scrollHeight;
   });
 
   $("#chat-form").on("submit", event => {
@@ -39,7 +39,7 @@ $(document).ready(function() {
 
     //emiting message to the server
     socket.emit("chatMessage", msg);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    tabContent.scrollTop = tabContent.scrollHeight;
     $.ajax("/api/messages", {
       type: "POST",
       data: msg

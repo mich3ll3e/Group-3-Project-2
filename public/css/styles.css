@@ -56,13 +56,13 @@ html, body{
 .form-control:focus{
   box-shadow: none;
 }
-#chat-messages{
+/* #chat-messages{
   border:1px solid lightgray;
   overflow-y: scroll;
   height: 60vh;
   padding:2rem
-}
-#usersTabContent{
+} */
+#tab-content{
   border:1px solid lightgray;
   overflow-y: scroll;
   height: 61vh;
