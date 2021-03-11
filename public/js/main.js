@@ -10,7 +10,6 @@ $(document).ready(function() {
     console.log(user);
   });
 
-
   //Message from Server
   socket.on("message", message => {
     outputMessage(message);
