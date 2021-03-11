@@ -2,13 +2,52 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
-
-.centered{
-  text-align: center;
-  color: blueviolet;
+#container1{
+margin: auto;
 }
 
-#footer{
+.center{
+font-size: xx-large;
+text-align: center;
+color:rgb(105, 20, 175);
+}
+
+.footer{
+  font-size: large;
+  color: rgb(105, 20, 175);
   text-align: center;
-  color: blueviolet;
+
+}
+
+.message-bubble{
+  max-width: 200px;
+}
+
+.my-message{
+  background-color: rgb(171, 205, 236);
+  margin-left: auto;
+}
+.message{
+  max-width: 200px;
+  min-height: 50px;
+  
+  margin-bottom: 20px;
+}
+.message-text{
+  font-size: 10px;
+}
+
+.container{
+  text-align: center;
+  color: blue;
+}
+
+.img{
+  max-width: 10%;
+  max-height: 10%;
+  float: right;
+}
+
+.text{
+  text-align: center;
 }

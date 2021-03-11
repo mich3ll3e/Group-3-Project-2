@@ -11,9 +11,9 @@
                 {{/each}}
             </div>
             <div class="col-md-9"> 
-                <div id="chat-message">
-                    {{#each messages}}
-                    <div class="card">
+                <div id="chat-messages">
+                    {{!-- {{#each messages}}
+                    <div class="card mb-3 message-bubble">
                         
                         <div class="card-body">
                             <div class="card-title">
@@ -27,11 +27,11 @@
                         
                     </div>
                         
-                    {{/each}}
+                    {{/each}} --}}
                 </div>
 
-                <div id="chat-form-contianer">
-                    <form id="chat-form" class="form-group">
+                <div id="chat-form-contianer ">
+                    <form id="chat-form" class="form-group mt-3">
                         <div class="input-group">
                             <input type="text" id="msg" class="form-control" placeholder="Enter message" required
                                 autocomplete="off">
@@ -48,3 +48,5 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/main.js"></script>
+
+<footer class="footer">&copy;2021 Chats'R'Us </footer>
