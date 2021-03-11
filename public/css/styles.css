@@ -1,58 +1,100 @@
 html, body{
   height: 100%;
+  margin: 0;
+  color:rgba(94, 94, 94)
+}
+.wrapper{
+  min-height: 100%;
+  margin-bottom: -35px;
 }
 .slantedDiv{
   position: relative;
   z-index: -1;
   height: 400px;
-  background-image: url("https://images.ctfassets.net/3prze68gbwl1/asset-17suaysk1qa1jgn/ce11bb9326335ed093b680aac0f97686/android-chat-app-tutorial.png");
+  background-image: url("../images/backgorund.png");
   background-repeat: no-repeat;
   background-size: cover;
   transform: skewY(-11deg);
-  
 }
 
-.slantedDiv .content{
-  margin-left: 5rem;
-  padding-top: 7rem;
-  transform: skewY(11deg);
+.content{
+  width: 250px;
+  margin: 0 auto;
 }
 
-form.signup,
-form.login {
-  margin-top: 50px;
-}
-
-
-.centered{
+#login-form, #signup-form{
+  width: 400px;
+  margin: 6rem auto;
+  border: 1px solid rgb(235, 235, 235);
+  padding:10px 25px;
+  box-shadow: 5px 10px 5px 1px rgb(236, 236, 236) ;
   text-align: center;
-  color: blueviolet;
+}
+.input-group{
+  margin-bottom: 15px;
+}
+.input-group-addon{
+  border-bottom: 1px solid lightgray;
+}
+.icon{
+  padding-top: 12px;
+}
+#login-form .form-control, 
+#signup-form .form-control{
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid lightgray;
+}
+
+.btn {
+  background-color: rgb(255, 166, 0);
+  font-weight: bold;
+  color: white;
+  text-shadow:  black 1px 1px;
+  box-shadow: none !important;
+}
+.form-control:focus{
+  box-shadow: none;
+}
+#chat-messages{
+  border:1px solid lightgray;
+  overflow-y: scroll;
+  height: 60vh;
+  padding:2rem
 }
 
 #footer{
+  height: 25px;
   text-align: center;
-  color: blueviolet;
-}
-#centered{
-text-align: center;
-color:blue;
 }
 
-.message-bubble{
-  max-width: 200px;
-}
-
-.my-message{
-  background-color: rgb(171, 205, 236);
-  margin-left: auto;
-}
 .message{
-  max-width: 200px;
+  width:200px;
   min-height: 50px;
   
   margin-bottom: 20px;
+  background-color: lightskyblue;
+  color:white
 }
+
+.my-message{
+  background-color: rgb(255, 166, 0);
+  color:white;
+  margin-left: auto;
+  
+}
+
 .message-text{
   font-size: 10px;
+}
 
+@media only screen and (max-width:425px){
+  .slantedDiv{
+    background-image: url("../images/bgmobile.png");
+  }
+  
+  #login-form, #signup-form{
+    width: 90%;
+    
+  }
 }

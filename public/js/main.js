@@ -1,6 +1,6 @@
 /* eslint-disable prefer-arrow-callback */
 $(document).ready(function() {
-  const chatMessages = $("#chat-messages");
+  const chatMessages = document.getElementById("chat-messages");
   const socket = io();
 
   let user;
@@ -14,6 +14,7 @@ $(document).ready(function() {
     outputMessage(message);
 
     //scroll down
+    console.log(chatMessages.scrollTop);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   });
 
@@ -37,6 +38,7 @@ $(document).ready(function() {
 
     //emiting message to the server
     socket.emit("chatMessage", msg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
     $.ajax("/api/messages", {
       type: "POST",
       data: msg
