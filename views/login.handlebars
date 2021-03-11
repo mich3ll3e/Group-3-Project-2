@@ -1,39 +1,15 @@
-{{!-- <nav class="navbar navbar-default">
-    <div class="">
-      <div class="navbar-header"><h1 class="centered">Chats 'R' Us</h1>
-      </div>
-    </div>
-  </nav> --}}
-  <h1 class="centered">Chats 'R' Us</h1>
-  <div class="container">
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Login</h2>
-        <form id="login-form">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
-          </div>
-          <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-        <br />
-        <p>Not a member? sign up <a href="/signup">here</a></p>
-      </div>
-    </div>
+<form id="login-form">
+  <h2 class="mb-4 pt-3">LOGIN</h2>
+  <div class="input-group">
+    <span class="input-group-addon"><span class="fas fa-envelope icon"></span></span>
+    <input type="email" class="form-control" id="email" placeholder="Email" required>
   </div>
+  <div class="input-group">
+    <span class="input-group-addon"><span class="fas fa-lock icon"></span></span>
+    <input type="password" class="form-control" id="password" placeholder="Password" required>
   </div>
+  <button type="submit" class="btn btn-block my-4">Login</button>
+  <p class="small">Not a member? <a href="/signup">sign up</a></p>
+</form>
 
-{{!-- <form id="login-form">
-    <input type="text" id="username" placeholder="username" autocomplete="off">
-    <input type="password" id="password" placeholder="password"autocomplete="off">
-
-    <button type="submit">login</button>
-</form>--}}
-
-<script src="/js/login.js"></script> 
-<footer id="footer">&copy;2021 Chats'R'Us </footer>
+<script src="/js/login.js"></script>
