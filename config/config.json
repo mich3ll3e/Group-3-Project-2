@@ -8,13 +8,13 @@
   },
   "test": {
     "username": "root",
-    "password": "newPass",
+    "password": "password",
     "database": "chatApp",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
-    "user_env_variable": "JAWSDB_URL",
+    "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   }
 }

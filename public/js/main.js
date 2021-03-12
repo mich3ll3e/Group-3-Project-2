@@ -1,12 +1,13 @@
 /* eslint-disable prefer-arrow-callback */
 $(document).ready(function() {
-  const chatMessages = $("#chat-messages");
+  const tabContent = document.getElementById("tab-content");
   const socket = io();
 
   let user;
 
   $.get("/api/user_data").then(function(data) {
     user = data;
+    console.log(user);
   });
 
   //Message from Server
@@ -14,7 +15,8 @@ $(document).ready(function() {
     outputMessage(message);
 
     //scroll down
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    tabContent.scrollTop = tabContent.scrollHeight;
   });
 
   $("#chat-form").on("submit", event => {
@@ -28,7 +30,7 @@ $(document).ready(function() {
     msg.userName = user.username;
     msg.UserId = user.id;
     msg.time = newMoment.format("hh:mm");
-
+    console.log(msg);
     const div = $("<div>");
     div.addClass("message p-3 card text-right message my-message");
     div.html(`<h6>You </h6>
@@ -37,6 +39,7 @@ $(document).ready(function() {
 
     //emiting message to the server
     socket.emit("chatMessage", msg);
+    tabContent.scrollTop = tabContent.scrollHeight;
     $.ajax("/api/messages", {
       type: "POST",
       data: msg
@@ -56,7 +59,6 @@ $(document).ready(function() {
 
 //output message to DOM
 function outputMessage(message) {
-  console.log(message);
   const div = $("<div>");
   div.addClass("message p-3 card mb-3 message");
   div.html(`<h6>${message.username} </h6>

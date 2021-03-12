@@ -1,6 +1,25 @@
-form.signup,
-form.login {
-  margin-top: 50px;
+html, body{
+  height: 100%;
+  margin: 0;
+  color:rgba(94, 94, 94)
+}
+.wrapper{
+  min-height: 100%;
+  margin-bottom: -50px;
+}
+.slantedDiv{
+  position: relative;
+  z-index: -1;
+  height: 400px;
+  background-image: url("../images/backgorund.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: skewY(-11deg);
+}
+
+.content{
+  width: 250px;
+  margin: 0 auto;
 }
 #container1{
 margin: auto;
@@ -12,42 +31,101 @@ text-align: center;
 color:rgb(105, 20, 175);
 }
 
-.footer{
-  font-size: large;
-  color: rgb(105, 20, 175);
+#login-form, #signup-form{
+  width: 400px;
+  margin: 6rem auto;
+  border: 1px solid rgb(235, 235, 235);
+  padding:10px 25px;
+  box-shadow: 5px 10px 5px 1px rgb(236, 236, 236) ;
   text-align: center;
-
+}
+.input-group{
+  margin-bottom: 15px;
+}
+.input-group-addon{
+  border-bottom: 1px solid lightgray;
+}
+.icon{
+  padding-top: 12px;
+}
+#login-form .form-control, 
+#signup-form .form-control{
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid lightgray;
 }
 
-.message-bubble{
-  max-width: 200px;
+.btn {
+  background-color: rgb(255, 166, 0);
+  font-weight: bold;
+  color: white;
+  text-shadow:  black 1px 1px;
+  box-shadow: none !important;
+}
+.form-control:focus{
+  box-shadow: none;
+}
+/* #chat-messages{
+  border:1px solid lightgray;
+  overflow-y: scroll;
+  height: 60vh;
+  padding:2rem
+} */
+#tab-content{
+  border:1px solid lightgray;
+  overflow-y: scroll;
+  height: 61vh;
+  padding:2rem
+}
+.nav-link {
+  color: inherit;
+}
+.nav-link:hover{
+  color:black;
+  border: none
+}
+.nav-pills .nav-link.active, 
+.nav-pills .show>.nav-link{
+  background-color: orange;
+}
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active{
+  background-color: orange;
+  color:white;
 }
 
-.my-message{
-  background-color: rgb(171, 205, 236);
-  margin-left: auto;
+#footer{
+  height: 50px;
+  text-align: center;
 }
+
 .message{
-  max-width: 200px;
+  width:200px;
   min-height: 50px;
   
   margin-bottom: 20px;
+  background-color: lightskyblue;
+  color:white
 }
+
+.my-message{
+  background-color: rgb(255, 166, 0);
+  color:white;
+  margin-left: auto;
+  
+}
+
 .message-text{
   font-size: 10px;
 }
 
-.container{
-  text-align: center;
-  color: blue;
-}
-
-.img{
-  max-width: 10%;
-  max-height: 10%;
-  float: right;
-}
-
-.text{
-  text-align: center;
+@media only screen and (max-width:425px){
+  .slantedDiv{
+    background-image: url("../images/bgmobile.png");
+  }
+  
+  #login-form, #signup-form{
+    width: 90%;
+    
+  }
 }

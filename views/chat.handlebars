@@ -1,52 +1,57 @@
-    <div class="jumbotron text-center">
-        <h1>REAL TIME CHAT APP</h1>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3"> 
-                <h3>Users ...</h3>
-                {{#each users}}
-                    <div class="userDisplay"><p class="userText">{{this.username}}</p></div>
-                    
-                {{/each}}
-            </div>
-            <div class="col-md-9"> 
-                <div id="chat-messages">
-                    {{!-- {{#each messages}}
-                    <div class="card mb-3 message-bubble">
-                        
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h4>{{dataValues.User.dataValues.username}} </h4>
-                            </div>
-                            
-                            <p>{{dataValues.body}}   <span style="font-size:10px">{{dataValues.createdAt}}</span></p>
-                            
-                            
-                        </div>
-                        
+<div class="container mh-100 mt-5">
+    {{!-- <div class="row mh-100"> --}}
+        {{!-- <div class="col-lg-3"> --}}
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="chat-messages-tab" data-toggle="tab" href="#chat-messages" role="tab"
+                        aria-controls="chat-messages" aria-selected="false"><span class="fas fa-comments"></span> Chats</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab"
+                        aria-controls="users" aria-selected="true"><span class="fas fa-users"></span> Users</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="tab-content">
+                <div class="tab-pane fade show active" id="chat-messages" role="tabpanel" aria-labelledby="chat-messages-tab"></div>
+                <div class="tab-pane fade " id="users" role="tabpanel" aria-labelledby="users-tab">
+                    {{#each users}}
+                    <div class="userDisplay">
+                        <p><span class="fas fa-user"></span> {{this.username}}</p>
                     </div>
-                        
-                    {{/each}} --}}
-                </div>
 
-                <div id="chat-form-contianer ">
-                    <form id="chat-form" class="form-group mt-3">
-                        <div class="input-group">
-                            <input type="text" id="msg" class="form-control" placeholder="Enter message" required
-                                autocomplete="off">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit" >Send</button>
-                            </div>
-                        </div>
-                    </form>
+                    {{/each}}
                 </div>
-
+                
             </div>
-        </div>
-    </div>
+        {{!-- </div> --}}
+        {{!-- <div class="col-lg-9"> --}}
+            {{!-- <div class="tab-pane fade" id="chat-messages" role="tabpanel" aria-labelledby="chat-messages-tab">
+                {{!-- {{#each messages}}
+                <div class="card mb-3 message">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>{{dataValues.User.dataValues.username}} </h4>
+                        </div>
+                        <p>{{dataValues.body}} <span style="font-size:10px">{{dataValues.createdAt}}</span></p>
+                    </div>
+                </div>
+                {{/each}} 
+            </div> --}}
+            <form id="chat-form" class="form-group mt-3">
+                <div class="input-group">
+                    <input type="text" id="msg" class="form-control" placeholder="Enter message" required
+                        autocomplete="off">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit"><span
+                                class="far fa-paper-plane"></span></button>
+                    </div>
+                </div>
+            </form>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/main.js"></script>
 
-<footer class="footer">&copy;2021 Chats'R'Us </footer>
+        {{!-- </div> --}}
+    {{!-- </div> --}}
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/main.js"></script>

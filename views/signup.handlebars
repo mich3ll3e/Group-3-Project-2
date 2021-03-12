@@ -1,50 +1,20 @@
-{{!-- <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header"><h1 class="centered">Chats 'R' Us</h1>
-      </div>
-    </div>
-  </nav> --}}
-   <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Chats'R'Us</h1>
-    <p class="text">Work communication made easy!</p>
+<form id="signup-form">
+  <h3 class="mb-4 pt-3">CREATE ACCOUNT</h3>
+  <div class="input-group">
+    <span class="input-group-addon"><span class="fas fa-user icon"></span></span>
+    <input type="name" class="form-control" id="username" placeholder="Username" required>
   </div>
-</div>
-  <br>
-  <div class="container1">
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
-        <h3 class="text">Sign up for our amazing services!</h3>
-        <form id="signup-form">
-            <div class="form-group">
-                <label for="exampleInputFirstName">UserName</label>
-                <input type="name" class="form-control" id="username" placeholder="Username">
-              </div>
-              
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
-            <br>
-             <button type="submit" class="btn btn-primary">Sign Up</button>
-            <img class="img"src="/img/messager-smile.png" alt="message bubble">
-          <br>
-          </div>
-        </form>
-        <p>Already a member?<a href="/login">Login</a></p>   
-      
+
+  <div class="input-group">
+    <span class="input-group-addon"><span class="fas fa-envelope icon"></span></span>
+    <input type="email" class="form-control" id="email" placeholder="Email" required>
   </div>
+  <div class="input-group">
+    <span class="input-group-addon"><span class="fas fa-lock icon"></span></span>
+    <input type="password" class="form-control" id="password" placeholder="Password" required>
   </div>
-  <footer class="footer">&copy;2021 Chats'R'Us </footer>
-    
-{{!-- <form id="signup-form">
-    <input type="text" id="username" placeholder="username">
-    <input type="password" id="password" placeholder="password">
+  <button type="submit" class="btn btn-outline-secondary btn-block my-4">Sign Up</button>
+  <p class="small ">Already a member? <a href="/login">Login</a></p>
+</form>
 
-    <button type="submit">Signup</button>
-</form>--}}
-
-
-<script src="/js/signup.js"></script> 
+<script src="/js/signup.js"></script>
