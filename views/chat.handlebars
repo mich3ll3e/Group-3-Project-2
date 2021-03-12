@@ -1,6 +1,5 @@
-
 <div class="container mh-100 mt-5">
-    
+
     {{!-- <div class="row mh-100"> --}}
         {{!-- <div class="col-lg-3"> --}}
             <ul class="nav nav-tabs" role="tablist">
@@ -15,9 +14,8 @@
                 </li>
             </ul>
             <div class="tab-content" id="tab-content">
-                <div class="tab-pane fade show active" id="chat-messages" role="tabpanel"
-                    aria-labelledby="chat-messages-tab">
-                    
+                <div class="tab-pane fade " id="chat-messages" role="tabpanel" aria-labelledby="chat-messages-tab">
+
                     {{#each messages}}
                     {{#ifCond dataValues.UserId ../user.id }}
                     <div class="card mb-3 message text-right my-message">
@@ -34,20 +32,23 @@
                             <div class="card-title">
                                 <h4>{{dataValues.User.dataValues.username}} </h4>
                             </div>
-                            <p>{{dataValues.body}} <span class="time-font time" style="font-size:10px">{{dataValues.createdAt}}</span></p>
+                            <p>{{dataValues.body}} <span class="time-font time"
+                                    style="font-size:10px">{{dataValues.createdAt}}</span></p>
                         </div>
                     </div>
                     {{/ifCond}}
 
                     {{/each}}
                 </div>
-                <div class="tab-pane fade " id="users" role="tabpanel" aria-labelledby="users-tab">
+                <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
                     {{#each users}}
                     <div class="userDisplay">
-                        {{#if isOnline}}
-                        <p><span class="fas fa-user"></span> {{this.username}} (online)</p>
+                        {{#if dataValues.isOnline}}
+                        <p><span class="fas fa-user"></span> {{dataValues.username}} (online) <span
+                                class=" dot onlineDot"></span></p>
                         {{else}}
-                        <p><span class="fas fa-user"></span> {{this.username}}</p>
+                        <p><span class="fas fa-user"></span> {{dataValues.username}} <span
+                                class=" dot offlineDot"></span></p>
                         {{/if}}
 
                     </div>
@@ -56,9 +57,7 @@
                 </div>
 
             </div>
-            {{!--
-        </div> --}}
-        {{!-- <div class="col-lg-9"> --}}
+
             <div class="tab-pane fade" id="chat-messages" role="tabpanel" aria-labelledby="chat-messages-tab">
 
             </div>
@@ -72,10 +71,7 @@
                     </div>
                 </div>
             </form>
+        </div>
 
-
-           
-</div>
-
-<script src="/socket.io/socket.io.js"></script>
-<script src="/js/main.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/main.js"></script>
