@@ -123,6 +123,7 @@ app.post("/api/signup", (req, res) => {
       res.redirect("/login");
     })
     .catch(err => {
+      console.log(err);
       res.status(401).json(err);
     });
 });
