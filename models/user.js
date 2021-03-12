@@ -20,10 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     // The password cannot be null
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [4, 10]
-      }
+      allowNull: false
     },
     isOnline: {
       type: DataTypes.BOOLEAN,
