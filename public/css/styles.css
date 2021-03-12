@@ -56,13 +56,31 @@ html, body{
 .form-control:focus{
   box-shadow: none;
 }
-#chat-messages{
-  border:1px solid lightgray;
-  overflow-y: scroll;
-  height: 60vh;
-  padding:2rem
+.dot {
+  height: 10px;
+  width: 10px;
+  margin-left: 5px;
+  
+  border-radius: 50%;
+  display: inline-block;
 }
-#usersTabContent{
+.onlineDot{
+  background-color: lightgreen;
+  animation: glow 1s infinite alternate
+}
+.offlineDot{
+  background-color: red;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px -5px #aef4af;
+  }
+  to {
+    box-shadow: 0 0 5px 5px #aef4af;
+  }
+}
+#tab-content{
   border:1px solid lightgray;
   overflow-y: scroll;
   height: 61vh;
