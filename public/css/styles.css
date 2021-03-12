@@ -21,6 +21,15 @@ html, body{
   width: 250px;
   margin: 0 auto;
 }
+#container1{
+margin: auto;
+}
+
+.center{
+font-size: xx-large;
+text-align: center;
+color:rgb(105, 20, 175);
+}
 
 #login-form, #signup-form{
   width: 400px;
