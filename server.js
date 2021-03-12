@@ -49,19 +49,6 @@ const botName = "ChatBot";
 let user = {};
 
 io.on("connection", socket => {
-  if (user.id) {
-    db.User.update(
-      { isOnline: true },
-      {
-        where: {
-          id: user.id
-        }
-      }
-    ).then(dbUser => {
-      console.log(dbUser);
-    });
-  }
-
   //welcome current user
   socket.emit(
     "message",
@@ -88,7 +75,7 @@ io.on("connection", socket => {
         }
       }
     ).then(dbUser => {
-      console.log(dbUser);
+      console.log(`${dbUser} had logged off`);
     });
   });
 
@@ -103,8 +90,10 @@ app.get("/signup", (req, res) => {
 });
 
 app.get("/chat", isAuthenticated, (req, res) => {
-  db.User.findAll({ raw: true }).then(dbUsers => {
-    db.Message.findAll({ include: db.User }).then(dbMessages => {
+  db.User.findAll({ order: [["isOnline", "DESC"]] }).then(dbUsers => {
+    db.Message.findAll({
+      include: db.User
+    }).then(dbMessages => {
       res.render("chat", {
         users: dbUsers,
         messages: dbMessages,
@@ -125,7 +114,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/signup", (req, res) => {
-  console.log(req.body);
   db.User.create({
     username: req.body.username,
     email: req.body.email,
@@ -145,7 +133,6 @@ app.post("/api/login", passport.authenticate("local"), (req, res) => {
 });
 
 app.post("/api/messages", (req, res) => {
-  console.log(req.body);
   db.Message.create({
     body: req.body.text,
     UserId: req.body.UserId
@@ -168,7 +155,8 @@ app.get("/api/user_data", (req, res) => {
 
     res.json({
       username: req.user.username,
-      id: req.user.id
+      id: req.user.id,
+      isOnline: req.user.isOnline
     });
   }
 });
