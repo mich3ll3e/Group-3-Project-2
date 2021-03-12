@@ -24,25 +24,59 @@ app.use(passport.session());
 
 const exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+const hbs = exphbs.create({
+  defaultLayout: "main",
+  //create custome helpers
+  helpers: {
+    ifCond: function(v1, v2, options) {
+      if (v1 === v2) {
+        return options.fn(this);
+      }
+      return options.inverse(this);
+    },
+    equalTo: function(value1, value2) {
+      if (value1 === value2) {
+        return true;
+      }
+      return false;
+    }
+  }
+});
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 const botName = "ChatBot";
-let username = "username";
+let user = {};
 
 io.on("connection", socket => {
   //welcome current user
-  socket.emit("message", formatMessage(botName, `welcome to chat ${username}`));
+  socket.emit(
+    "message",
+    formatMessage(botName, `welcome to chat ${user.username}`)
+  );
 
   //Bordcast when a user connects
   socket.broadcast.emit(
     "message",
-    formatMessage(botName, `${username} has joined the chat`)
+    formatMessage(botName, `${user.username} has joined the chat`)
   );
 
   //when client disconnects
   socket.on("disconnect", () => {
-    io.emit("message", formatMessage(botName, `${username} has left the chat`));
+    io.emit(
+      "message",
+      formatMessage(botName, `${user.username} has left the chat`)
+    );
+    db.User.update(
+      { isOnline: false },
+      {
+        where: {
+          id: user.id
+        }
+      }
+    ).then(dbUser => {
+      console.log(`${dbUser} had logged off`);
+    });
   });
 
   //Listen for chat Message
@@ -56,9 +90,15 @@ app.get("/signup", (req, res) => {
 });
 
 app.get("/chat", isAuthenticated, (req, res) => {
-  db.User.findAll({ raw: true }).then(dbUsers => {
-    db.Message.findAll({ include: db.User }).then(dbMessages => {
-      res.render("chat", { users: dbUsers, messages: dbMessages });
+  db.User.findAll({ order: [["isOnline", "DESC"]] }).then(dbUsers => {
+    db.Message.findAll({
+      include: db.User
+    }).then(dbMessages => {
+      res.render("chat", {
+        users: dbUsers,
+        messages: dbMessages,
+        user: req.user
+      });
     });
   });
 });
@@ -74,7 +114,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/signup", (req, res) => {
-  console.log(req.body);
   db.User.create({
     username: req.body.username,
     email: req.body.email,
@@ -89,12 +128,11 @@ app.post("/api/signup", (req, res) => {
 });
 
 app.post("/api/login", passport.authenticate("local"), (req, res) => {
-  username = req.user.username;
+  user = req.user;
   res.json(req.user);
 });
 
 app.post("/api/messages", (req, res) => {
-  console.log(req.body);
   db.Message.create({
     body: req.body.text,
     UserId: req.body.UserId
@@ -117,7 +155,8 @@ app.get("/api/user_data", (req, res) => {
 
     res.json({
       username: req.user.username,
-      id: req.user.id
+      id: req.user.id,
+      isOnline: req.user.isOnline
     });
   }
 });
