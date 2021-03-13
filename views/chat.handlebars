@@ -18,22 +18,23 @@
 
                     {{#each messages}}
                     {{#ifCond dataValues.UserId ../user.id }}
-                    <div class="card mb-3 message text-right my-message">
+                    <div class="card mb-3 message my-message">
                         <div class="card-body">
                             <div class="card-title">
-                                <h4>You </h4>
+                                <h6>You </h6>
                             </div>
-                            <p>{{dataValues.body}} <span style="font-size:10px">{{dataValues.createdAt}}</span></p>
+                            <p class="message-text">{{dataValues.body}}</p>
+                            <span class="time-text">{{dataValues.createdAt}}</span>
                         </div>
                     </div>
                     {{else}}
                     <div class="card mb-3 message">
                         <div class="card-body">
                             <div class="card-title">
-                                <h4>{{dataValues.User.dataValues.username}} </h4>
+                                <h6>{{dataValues.User.dataValues.username}} </h6>
                             </div>
-                            <p>{{dataValues.body}} <span class="time-font time"
-                                    style="font-size:10px">{{dataValues.createdAt}}</span></p>
+                            <p class="message-text">{{dataValues.body}}</p>
+                            <span class="time-text time">{{dataValues.createdAt}}</span>
                         </div>
                     </div>
                     {{/ifCond}}
