@@ -38,13 +38,3 @@ Due to time constraint, there're more features to add, such as able to send noti
 [![license](https://img.shields.io/github/license/DAVFoundation/captain-n3m0.svg?style=flat-square)](https://github.com/DAVFoundation/captain-n3m0/blob/master/LICENSE)
 
 
-## Contributors
-* Laith
-* Michelle
-* Shawn
-
-<<<<<<< HEAD
-=======
-![](/images/screenshot)
->>>>>>> master
->>>>>>> 09f4cb72cefe90b6e4aba4925086c397582517d4
