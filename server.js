@@ -22,6 +22,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+require("./routes/handlbars-routes")(app);
+
 const exphbs = require("express-handlebars");
 
 const hbs = exphbs.create({
@@ -72,40 +74,6 @@ io.on("connection", socket => {
   //Listen for chat Message
   socket.on("chatMessage", msg => {
     socket.broadcast.emit("message", formatMessage(msg.userName, msg.text));
-  });
-});
-
-app.get("/signup", (req, res) => {
-  res.render("signup");
-});
-
-app.get("/chat", isAuthenticated, (req, res) => {
-  db.User.findAll({ order: [["isOnline", "DESC"]] }).then(dbUsers => {
-    db.Message.findAll({
-      include: db.User
-    }).then(dbMessages => {
-      res.render("chat", {
-        users: dbUsers,
-        messages: dbMessages,
-        user: req.user
-      });
-    });
-  });
-});
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-app.get("/profile", isAuthenticated, (req, res) => {
-  db.Message.findAll(
-    { raw: true },
-    {
-      where: {
-        UserId: req.user.id
-      }
-    }
-  ).then(dbMessags => {
-    console.log(dbMessags);
-    res.render("profile", { user: req.user, messages: dbMessags });
   });
 });
 
@@ -172,25 +140,6 @@ app.get("/api/user_data", (req, res) => {
   }
 });
 
-app.get("/logout", (req, res) => {
-  req.session.destroy(err => {
-    if (err) {
-      throw err;
-    }
-    db.User.update(
-      { isOnline: false },
-      {
-        where: {
-          id: user.id
-        }
-      }
-    ).then(dbUser => {
-      console.log(`${dbUser} had logged off`);
-    });
-    res.redirect("/login"); //Inside a callback… bulletproof!
-  });
-});
-
 app.delete("/api/delete/:id", (req, res) => {
   console.log(req.params.id);
   db.Message.destroy({
@@ -206,10 +155,6 @@ app.delete("/api/delete/:id", (req, res) => {
       res.send({ msg: "User Deleted" });
     });
   });
-});
-
-app.get("/", (req, res) => {
-  res.render("index");
 });
 
 const PORT = process.env.PORT || 8080;
