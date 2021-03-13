@@ -20,5 +20,9 @@ open terminal do a git clone, and run npm i.
 * https://github.com/mich3ll3e/Group-3-Project-2
 * https://group-3-project-2.herokuapp.com/
 
+## Contributors
+* Laith
+* Michelle
+* Shawn
 
-![](/images/screenshot)
+![screenshot](/images/screenshot)
