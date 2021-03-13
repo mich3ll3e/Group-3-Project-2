@@ -67,16 +67,6 @@ io.on("connection", socket => {
       "message",
       formatMessage(botName, `${user.username} has left the chat`)
     );
-    db.User.update(
-      { isOnline: false },
-      {
-        where: {
-          id: user.id
-        }
-      }
-    ).then(dbUser => {
-      console.log(`${dbUser} had logged off`);
-    });
   });
 
   //Listen for chat Message
@@ -160,6 +150,25 @@ app.get("/api/user_data", (req, res) => {
       isOnline: req.user.isOnline
     });
   }
+});
+
+app.get("/logout", (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      throw err;
+    }
+    db.User.update(
+      { isOnline: false },
+      {
+        where: {
+          id: user.id
+        }
+      }
+    ).then(dbUser => {
+      console.log(`${dbUser} had logged off`);
+    });
+    res.redirect("/login"); //Inside a callback… bulletproof!
+  });
 });
 
 const PORT = process.env.PORT || 8080;
