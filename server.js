@@ -96,27 +96,16 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 app.get("/profile", isAuthenticated, (req, res) => {
-  console.log("Hi from profile");
-  db.User.findOne(
+  db.Message.findAll(
     { raw: true },
     {
       where: {
-        id: req.user.id
+        UserId: req.user.id
       }
     }
-  ).then(dbUser => {
-    console.log(dbUser);
-    db.Message.findAll(
-      { raw: true },
-      {
-        where: {
-          UserId: dbUser.id
-        }
-      }
-    ).then(dbMessags => {
-      console.log("messages" + dbMessags);
-      res.render("profile", { user: dbUser, messages: dbMessags });
-    });
+  ).then(dbMessags => {
+    console.log(dbMessags);
+    res.render("profile", { user: req.user, messages: dbMessags });
   });
 });
 
