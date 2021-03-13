@@ -21,6 +21,15 @@ html, body{
   width: 250px;
   margin: 0 auto;
 }
+#container1{
+margin: auto;
+}
+
+.center{
+font-size: xx-large;
+text-align: center;
+color:rgb(105, 20, 175);
+}
 
 #login-form, #signup-form{
   width: 400px;
@@ -113,18 +122,22 @@ html, body{
   min-height: 50px;
   
   margin-bottom: 20px;
-  background-color: lightskyblue;
-  color:white
+  background-color: rgba(135, 206, 250, 0.5);
+  /* color:white */
 }
 
 .my-message{
-  background-color: rgb(255, 166, 0);
-  color:white;
+  background-color: rgba(255, 166, 0, 0.5);
+  /* color:black; */
   margin-left: auto;
   
 }
-
 .message-text{
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.time-text{
   font-size: 10px;
 }
 
