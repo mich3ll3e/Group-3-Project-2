@@ -113,18 +113,22 @@ html, body{
   min-height: 50px;
   
   margin-bottom: 20px;
-  background-color: lightskyblue;
-  color:white
+  background-color: rgba(135, 206, 250, 0.5);
+  /* color:white */
 }
 
 .my-message{
-  background-color: rgb(255, 166, 0);
-  color:white;
+  background-color: rgba(255, 166, 0, 0.5);
+  /* color:black; */
   margin-left: auto;
   
 }
-
 .message-text{
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.time-text{
   font-size: 10px;
 }
 
