@@ -6,7 +6,6 @@ const socketio = require("socket.io");
 const moment = require("moment");
 const formatMessage = require("./utils/messages");
 const passport = require("./config/passport");
-const isAuthenticated = require("./config/middleware/isAuthenticated");
 const db = require("./models");
 
 const app = express();
