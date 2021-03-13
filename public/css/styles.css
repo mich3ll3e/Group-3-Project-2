@@ -10,7 +10,7 @@ html, body{
 .slantedDiv{
   position: relative;
   z-index: -1;
-  height: 400px;
+  height: 500px;
   background-image: url("../images/backgorund.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -39,6 +39,12 @@ color:rgb(105, 20, 175);
   box-shadow: 5px 10px 5px 1px rgb(236, 236, 236) ;
   text-align: center;
 }
+
+#update-profile-form{
+  width:60%;
+  margin: 1rem auto;
+}
+
 .input-group{
   margin-bottom: 15px;
 }
@@ -49,13 +55,14 @@ color:rgb(105, 20, 175);
   padding-top: 12px;
 }
 #login-form .form-control, 
-#signup-form .form-control{
+#signup-form .form-control,
+#update-profile-form .form-control{
   outline: none;
   border: 0;
   border-bottom: 1px solid lightgray;
 }
 
-.btn {
+.btnCustom {
   background-color: rgb(255, 166, 0);
   font-weight: bold;
   color: white;
@@ -68,8 +75,7 @@ color:rgb(105, 20, 175);
 .dot {
   height: 10px;
   width: 10px;
-  margin-left: 5px;
-  
+  margin-left: 10px;
   border-radius: 50%;
   display: inline-block;
 }
@@ -135,19 +141,25 @@ color:rgb(105, 20, 175);
 .message-text{
   font-size: 1.25rem;
   font-weight: bold;
+  margin:0;
+  padding-left: 10px;
 }
 
 .time-text{
   font-size: 10px;
+  padding-left: 10px;
 }
 
 @media only screen and (max-width:425px){
   .slantedDiv{
     background-image: url("../images/bgmobile.png");
+    height: 200px;
   }
   
   #login-form, #signup-form{
     width: 90%;
     
   }
+
 }
+
