@@ -7,7 +7,7 @@ https://group-3-project-2.herokuapp.com/
 Chat ‘R’ Us is an application allows teams to communicate with each other both individually and as a group. You are able to see who is online in the chat room, previous messages. 
 
 ## Screenshot
-![watch the video](public/images/screenshot.mov)
+![screenshot](public/images/screenshot.jpeg)
 
 ## User Story
 As a team leader,  I would like to have an online chat room which shows me who is online during work hours, save chat history to record team’s conversation so that I can communicate with my team and track conversation history effectively when we can’t have phone in the office and limited human contacts. 
