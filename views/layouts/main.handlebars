@@ -30,16 +30,22 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
+                    {{#if user.username}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">Hi, {{user.username}}</a>
+                    </li>
+                    {{/if}}
                     <li class="nav-item">
                         <a class="nav-link" href="/chat">Chat</a>
                     </li>
+                    {{#if user.username}}
                     <li class="nav-item">
-                        <a class="nav-link" href="/settings"><span class="fas fa-cog"></span></a>
+                        <a class="nav-link" href="/logout">logout</a>
                     </li>
+                    {{/if}}
                 </ul>
             </div>
         </nav>
-
         {{{body}}}
     </div>
 
@@ -55,15 +61,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
-        </script>
-    {{!-- <script>
-        Handlebars.registerHelper('ifCond', function (v1, v2, options) {
-            if (v1 === v2) {
-                return options.fn(this);
-            }
-            return options.inverse(this);
-        });
-    </script> --}}
+    </script>
 </body>
 
 </html>
