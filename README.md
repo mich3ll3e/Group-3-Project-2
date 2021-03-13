@@ -25,4 +25,5 @@ open terminal do a git clone, and run npm i.
 * Michelle
 * Shawn
 
-![screenshot](/images/screenshot)
+![](/images/screenshot)
+>>>>>>> master
