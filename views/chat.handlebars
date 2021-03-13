@@ -1,4 +1,4 @@
-<div class="container mh-100 mt-5">
+<div class="container mt-3">
 
     {{!-- <div class="row mh-100"> --}}
         {{!-- <div class="col-lg-3"> --}}
@@ -14,28 +14,22 @@
                 </li>
             </ul>
             <div class="tab-content" id="tab-content">
-                <div class="tab-pane fade show active" id="chat-messages" role="tabpanel" aria-labelledby="chat-messages-tab">
+                <div class="tab-pane fade show active" id="chat-messages" role="tabpanel"
+                    aria-labelledby="chat-messages-tab">
 
                     {{#each messages}}
                     {{#ifCond dataValues.UserId ../user.id }}
-                    <div class="card mb-3 message my-message">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h6>You </h6>
-                            </div>
-                            <p class="message-text">{{dataValues.body}}</p>
-                            <span class="time-text">{{dataValues.createdAt}}</span>
-                        </div>
+                    <div class="card mb-3 message my-message p-1">
+                        <h6>You </h6>
+                        <p class="message-text">{{dataValues.body}}</p>
+                        <span class="time-text">{{dataValues.createdAt}}</span>
                     </div>
                     {{else}}
-                    <div class="card mb-3 message">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h6>{{dataValues.User.dataValues.username}} </h6>
-                            </div>
-                            <p class="message-text">{{dataValues.body}}</p>
-                            <span class="time-text time">{{dataValues.createdAt}}</span>
-                        </div>
+                    <div class="card mb-3 message p-1">
+                        <h6>{{dataValues.User.dataValues.username}} </h6>
+                        <p class="message-text">{{dataValues.body}}</p>
+                        <span class="time-text time">{{dataValues.createdAt}}</span>
+
                     </div>
                     {{/ifCond}}
 
@@ -45,10 +39,10 @@
                     {{#each users}}
                     <div class="userDisplay">
                         {{#if dataValues.isOnline}}
-                        <p><span class="fas fa-user"></span> {{dataValues.username}} (online) <span
+                        <p><span class="fas fa-user mr-2"></span> {{dataValues.username}}<span
                                 class=" dot onlineDot"></span></p>
                         {{else}}
-                        <p><span class="fas fa-user"></span> {{dataValues.username}} <span
+                        <p><span class="fas fa-user mr-2"></span> {{dataValues.username}} <span
                                 class=" dot offlineDot"></span></p>
                         {{/if}}
 
