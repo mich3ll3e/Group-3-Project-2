@@ -32,7 +32,7 @@ $(document).ready(function() {
     msg.time = newMoment.format("hh:mm");
     console.log(msg);
     const div = $("<div>");
-    div.addClass("message p-3 card message my-message");
+    div.addClass("message p-1 card message my-message");
     div.html(`<h6>You </h6>
     <p class="message-text">${msg.text}</p><span class="time-text text-right">${msg.time}</span>`);
     $("#chat-messages").append(div);
@@ -60,7 +60,7 @@ $(document).ready(function() {
 //output message to DOM
 function outputMessage(message) {
   const div = $("<div>");
-  div.addClass("message p-3 card mb-3 message");
+  div.addClass("message p-1 card mb-2 message");
   div.html(`<h6>${message.username} </h6>
     <p class="message-text">${message.text}</p><span class="time-text text-right">${message.time}</span>`);
   $("#chat-messages").append(div);

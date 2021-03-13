@@ -95,12 +95,18 @@ app.get("/chat", isAuthenticated, (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login");
 });
-app.get("/settings", isAuthenticated, (req, res) => {
-  res.render("settings", { user: req.user });
-});
-
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/profile", isAuthenticated, (req, res) => {
+  db.Message.findAll(
+    { raw: true },
+    {
+      where: {
+        UserId: req.user.id
+      }
+    }
+  ).then(dbMessags => {
+    console.log(dbMessags);
+    res.render("profile", { user: req.user, messages: dbMessags });
+  });
 });
 
 app.post("/api/signup", (req, res) => {
@@ -116,6 +122,20 @@ app.post("/api/signup", (req, res) => {
       console.log(err);
       res.status(401).json(err);
     });
+});
+app.put("/api/update/:id", (req, res) => {
+  console.log(req.body);
+  const updatedUser = {
+    username: req.body.username,
+    email: req.body.email
+  };
+  db.User.update(updatedUser, {
+    where: {
+      id: req.params.id
+    }
+  }).then(() => {
+    res.send({ msg: "user updated" });
+  });
 });
 
 app.post("/api/login", passport.authenticate("local"), (req, res) => {
@@ -169,6 +189,27 @@ app.get("/logout", (req, res) => {
     });
     res.redirect("/login"); //Inside a callback… bulletproof!
   });
+});
+
+app.delete("/api/delete/:id", (req, res) => {
+  console.log(req.params.id);
+  db.Message.destroy({
+    where: {
+      UserId: req.params.id
+    }
+  }).then(() => {
+    db.User.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(() => {
+      res.send({ msg: "User Deleted" });
+    });
+  });
+});
+
+app.get("/", (req, res) => {
+  res.render("index");
 });
 
 const PORT = process.env.PORT || 8080;
