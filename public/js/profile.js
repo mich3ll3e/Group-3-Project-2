@@ -19,7 +19,7 @@ $(document).ready(() => {
         console.log(data);
         const div = $("<h1>");
         div.text(data.msg);
-        location.reload();
+        location.replace("/login");
       })
       .catch(err => {
         console.log(err);
