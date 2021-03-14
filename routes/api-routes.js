@@ -28,7 +28,7 @@ module.exports = app => {
         id: req.params.id
       }
     }).then(() => {
-      res.send({ msg: "user updated" });
+      res.send({ msg: "User updated Successfuly!" });
     });
   });
 
@@ -50,9 +50,7 @@ module.exports = app => {
       // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-
+      // Otherwise send back the user's email, id and online status
       res.json({
         username: req.user.username,
         id: req.user.id,
@@ -62,12 +60,13 @@ module.exports = app => {
   });
 
   app.delete("/api/delete/:id", (req, res) => {
-    console.log(req.params.id);
+    //delete all user messages
     db.Message.destroy({
       where: {
         UserId: req.params.id
       }
     }).then(() => {
+      //delete user
       db.User.destroy({
         where: {
           id: req.params.id

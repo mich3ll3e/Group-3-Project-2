@@ -1,71 +1,63 @@
-<div class="container mt-3">
+<main class="container mt-3">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="chat-messages-tab" data-toggle="tab" href="#chat-messages" role="tab"
+                aria-controls="chat-messages" aria-selected="false"><span class="fas fa-comments"></span> Chats</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users"
+                aria-selected="true"><span class="fas fa-users"></span> Users</a>
+        </li>
+    </ul>
+    {{!-- Tabs content --}}
+    <div class="tab-content" id="tab-content">
+        <div class="tab-pane fade show active" id="chat-messages" role="tabpanel" aria-labelledby="chat-messages-tab">
 
-    {{!-- <div class="row mh-100"> --}}
-        {{!-- <div class="col-lg-3"> --}}
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="chat-messages-tab" data-toggle="tab" href="#chat-messages" role="tab"
-                        aria-controls="chat-messages" aria-selected="false"><span class="fas fa-comments"></span>
-                        Chats</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users"
-                        aria-selected="true"><span class="fas fa-users"></span> Users</a>
-                </li>
-            </ul>
-            <div class="tab-content" id="tab-content">
-                <div class="tab-pane fade show active" id="chat-messages" role="tabpanel"
-                    aria-labelledby="chat-messages-tab">
-
-                    {{#each messages}}
-                    {{#ifCond dataValues.UserId ../user.id }}
-                    <div class="card mb-3 message my-message p-1">
-                        <h6>You </h6>
-                        <p class="message-text">{{dataValues.body}}</p>
-                        <span class="time-text">{{dataValues.createdAt}}</span>
-                    </div>
-                    {{else}}
-                    <div class="card mb-3 message p-1">
-                        <h6>{{dataValues.User.dataValues.username}} </h6>
-                        <p class="message-text">{{dataValues.body}}</p>
-                        <span class="time-text time">{{dataValues.createdAt}}</span>
-
-                    </div>
-                    {{/ifCond}}
-
-                    {{/each}}
-                </div>
-                <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
-                    {{#each users}}
-                    <div class="userDisplay">
-                        {{#if dataValues.isOnline}}
-                        <p><span class="fas fa-user mr-2"></span> {{dataValues.username}}<span
-                                class=" dot onlineDot"></span></p>
-                        {{else}}
-                        <p><span class="fas fa-user mr-2"></span> {{dataValues.username}} <span
-                                class=" dot offlineDot"></span></p>
-                        {{/if}}
-
-                    </div>
-
-                    {{/each}}
-                </div>
+            {{#each messages}}
+            {{#ifCond dataValues.UserId ../user.id }}
+            <div class="card mb-3 message my-message p-1">
+                <h6>You </h6>
+                <p class="message-text">{{dataValues.body}}</p>
+                <span class="time-text">{{dataValues.createdAt}}</span>
+            </div>
+            {{else}}
+            <div class="card mb-3 message p-1">
+                <h6>{{dataValues.User.dataValues.username}} </h6>
+                <p class="message-text">{{dataValues.body}}</p>
+                <span class="time-text time">{{dataValues.createdAt}}</span>
 
             </div>
+            {{/ifCond}}
 
-            <div class="tab-pane fade" id="chat-messages" role="tabpanel" aria-labelledby="chat-messages-tab">
-
-            </div>
-            <form id="chat-form" class="form-group mt-3">
-                <div class="input-group">
-                    <input type="text" id="msg" class="form-control" placeholder="Enter message" required
-                        autocomplete="off">
-                    <div class="input-group-append">
-                        <button class="btn btnCustom btn-outline-secondary" type="submit"><span
-                                class="far fa-paper-plane"></span></button>
-                    </div>
-                </div>
-            </form>
+            {{/each}}
         </div>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/js/main.js"></script>
+        <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
+            {{#each users}}
+            <div class="userDisplay">
+                {{#if dataValues.isOnline}}
+                <p><span class="fas fa-user mr-2"></span> {{dataValues.username}}<span class=" dot onlineDot"></span>
+                </p>
+                {{else}}
+                <p><span class="fas fa-user mr-2"></span> {{dataValues.username}} <span class=" dot offlineDot"></span>
+                </p>
+                {{/if}}
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{!-- Chat messages display  --}}
+    <div class="tab-pane fade" id="chat-messages" role="tabpanel" aria-labelledby="chat-messages-tab"></div>
+
+    {{!-- from to send messages  --}}
+    <form id="chat-form" class="form-group mt-3">
+        <div class="input-group">
+            <input type="text" id="msg" class="form-control" placeholder="Enter message" required autocomplete="off">
+            <div class="input-group-append">
+                <button class="btn btnCustom btn-outline-secondary" type="submit"><span
+                        class="far fa-paper-plane"></span></button>
+            </div>
+        </div>
+    </form>
+</main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>
