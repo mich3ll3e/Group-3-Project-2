@@ -35,6 +35,7 @@ module.exports = app => {
       res.render("profile", { user: req.user, messages: dbMessags });
     });
   });
+
   app.get("/logout", (req, res) => {
     req.session.destroy(err => {
       if (err) {
@@ -44,7 +45,7 @@ module.exports = app => {
         { isOnline: false },
         {
           where: {
-            id: user.id
+            id: req.user.id
           }
         }
       ).then(dbUser => {

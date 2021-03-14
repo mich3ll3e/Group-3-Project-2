@@ -30,17 +30,16 @@ passport.use(
             message: "Incorrect password."
           });
         }
-        console.log(dbUser);
-        db.User.update(
-          { isOnline: true },
-          {
-            where: {
-              id: dbUser.id
-            }
-          }
-        ).then(dbUser => {
-          console.log(dbUser);
-        });
+        // db.User.update(
+        //   { isOnline: true },
+        //   {
+        //     where: {
+        //       id: dbUser.id
+        //     }
+        //   }
+        // ).then(dbUser => {
+        //   console.log(dbUser);
+        // });
 
         // If none of the above, return the user
         return done(null, dbUser);

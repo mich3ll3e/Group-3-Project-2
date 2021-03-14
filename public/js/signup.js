@@ -13,6 +13,7 @@ $(document).ready(function() {
         .val()
         .trim()
     };
+
     signUpUser(newUser);
     $("#username").val("");
     $("#email").val("");
@@ -20,6 +21,7 @@ $(document).ready(function() {
   });
 
   function signUpUser(newUser) {
+    console.log(newUser);
     $.ajax("/api/signup", {
       type: "POST",
       data: newUser
