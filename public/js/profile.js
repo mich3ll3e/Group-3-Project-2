@@ -1,8 +1,8 @@
 $(document).ready(() => {
+  // updating a user
   $("#update-profile-form").on("submit", event => {
     event.preventDefault();
     const id = $("#updateBtn").data("id");
-    console.log(id);
     const updatedUser = {
       username: $("#username")
         .val()
@@ -15,10 +15,7 @@ $(document).ready(() => {
       type: "PUT",
       data: updatedUser
     })
-      .then(data => {
-        console.log(data);
-        const div = $("<h1>");
-        div.text(data.msg);
+      .then(() => {
         location.replace("/login");
       })
       .catch(err => {

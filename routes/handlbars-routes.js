@@ -24,6 +24,7 @@ module.exports = app => {
     });
   });
 
+  //route to current users profile page
   app.get("/profile", isAuthenticated, (req, res) => {
     console.log(req.user.id);
     db.Message.findAll({
@@ -41,6 +42,7 @@ module.exports = app => {
       if (err) {
         throw err;
       }
+      //update user online status to false
       db.User.update(
         { isOnline: false },
         {

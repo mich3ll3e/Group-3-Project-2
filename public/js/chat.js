@@ -7,30 +7,25 @@ $(document).ready(function() {
 
   $.get("/api/user_data").then(function(data) {
     user = data;
-    console.log(user);
   });
 
   //Message from Server
   socket.on("message", message => {
     outputMessage(message);
-
-    //scroll down
-
+    //scroll down when message is sent
     tabContent.scrollTop = tabContent.scrollHeight;
   });
 
   $("#chat-form").on("submit", event => {
     event.preventDefault();
-
     const newMoment = moment();
-
     //get message text
     const msg = {};
     msg.text = $("#msg").val();
     msg.userName = user.username;
     msg.UserId = user.id;
     msg.time = newMoment.format("hh:mm");
-    console.log(msg);
+    //output current user message to DOM
     const div = $("<div>");
     div.addClass("message p-1 card message my-message");
     div.html(`<h6>You </h6>
@@ -43,14 +38,9 @@ $(document).ready(function() {
     $.ajax("/api/messages", {
       type: "POST",
       data: msg
-    })
-      .then(function() {
-        //   location.replace("/chat");
-        // If there's an error, handle it by throwing up a bootstrap alert
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
+    }).catch(function(err) {
+      console.log(err);
+    });
     //clear Input
     $("#msg").val("");
     $("#msg").focus();

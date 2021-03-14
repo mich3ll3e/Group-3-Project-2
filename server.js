@@ -51,16 +51,6 @@ const botName = "ChatBot";
 let user = {};
 
 io.on("connection", socket => {
-  db.User.update(
-    { isOnline: true },
-    {
-      where: {
-        id: user.id
-      }
-    }
-  ).then(dbUser => {
-    console.log(dbUser);
-  });
   //welcome current user
   socket.emit(
     "message",
@@ -79,16 +69,6 @@ io.on("connection", socket => {
       "message",
       formatMessage(botName, `${user.username} has left the chat`)
     );
-    db.User.update(
-      { isOnline: false },
-      {
-        where: {
-          id: user.id
-        }
-      }
-    ).then(dbUser => {
-      console.log(dbUser);
-    });
   });
 
   //Listen for chat Message
@@ -96,9 +76,9 @@ io.on("connection", socket => {
     socket.broadcast.emit("message", formatMessage(msg.userName, msg.text));
   });
 });
-
+//login post requst
 app.post("/api/login", passport.authenticate("local"), (req, res) => {
-  user = req.user;
+  user = req.user; //gives socket io access to  current user object
   res.json(req.user);
 });
 
